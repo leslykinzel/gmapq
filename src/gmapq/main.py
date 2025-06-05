@@ -1,18 +1,19 @@
 # gmapq
-
-# std
 import os
 import sys
+from gmapq.core.env import get_envvar
+from gmapq.core.fmt import errorf
 
 
 def main():
+    try:
+        api_key = get_envvar("GOOGLE_PLACES_API_KEY")
+    except Exception as e:
+        errorf(e)
+        return os.EX_CONFIG
+
+    print(api_key)
     return 0
-
-
-def getenv(key: str) -> str|None:
-    return os.getenv(key) or (print(
-        f"Missing environment variable: {key}"
-    ), sys.exit(1))[0]
 
 
 if __name__ == "__main__":

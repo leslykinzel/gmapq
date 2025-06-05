@@ -12,7 +12,7 @@ dependencies = [
     "requests (>=2.32.3,<3.0.0)",
 ]
 
-[tool.poetry.scripts]
+[project.scripts]
 gmapq = "gmapq.main:main"
 
 [build-system]
