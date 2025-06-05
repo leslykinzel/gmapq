@@ -1,0 +1,21 @@
+[project]
+name = "gmapq"
+version = "0.1.0"
+description = "Powerful data extraction tool for Google Maps."
+authors = [
+    {name = "Lesly Kinzel",email = "dontemailme@leavemealone.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "requests (>=2.32.3,<3.0.0)",
+    "dotenv (>=0.9.9,<0.10.0)"
+]
+
+[tool.poetry.scripts]
+gmapq = "gmapq.main:main"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
