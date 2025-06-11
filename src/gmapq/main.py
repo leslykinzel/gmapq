@@ -2,6 +2,7 @@
 import os
 import sys
 from gmapq.core.env import get_envvar
+from gmapq.core.args import parse_argv
 from gmapq.core.fmt import errorf
 
 
@@ -12,10 +13,13 @@ def main():
         errorf(e)
         return os.EX_CONFIG
 
+    argv = parse_argv()
+
     print(api_key)
+    print(argv)
+
     return 0
 
 
 if __name__ == "__main__":
     sys.exit(main())
-

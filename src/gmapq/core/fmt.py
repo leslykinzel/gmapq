@@ -1,4 +1,4 @@
-# fmt
+# gmapq.core.fmt
 import sys
 from .const import ANSI
 

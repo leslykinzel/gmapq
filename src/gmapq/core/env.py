@@ -1,4 +1,4 @@
-# env
+# gmapq.core.env
 import os
 
 

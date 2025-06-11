@@ -1,4 +1,5 @@
-# const
+# gmapq.core.const
+
 
 class ANSI:
     reset = "\033[0m"
