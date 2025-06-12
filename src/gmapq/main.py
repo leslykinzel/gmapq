@@ -1,9 +1,11 @@
 # gmapq
 import os
 import sys
+import json
 from gmapq.core.env import get_envvar
-from gmapq.core.args import parse_argv
 from gmapq.core.fmt import errorf
+from gmapq.core.args import parse_argv
+from gmapq.core.google import GooglePlacesClient
 
 
 def main():
@@ -14,9 +16,22 @@ def main():
         return os.EX_CONFIG
 
     argv = parse_argv()
+    # print(argv)
+    # print(argv.search)
+    # print(argv.query)
+    # print(argv.output)
+    google = GooglePlacesClient(api_key)
 
-    print(api_key)
-    print(argv)
+    match argv.search:
+        case "text":
+            # mask = "places.displayName,places.formattedAddress"
+            r = google.text_search(argv.query)
+        case _:
+            # should be unreachable
+            errorf(f"{argv.search} is not available.")
+            return os.EX_UNAVAILABLE
+
+    print(json.dumps(r))
 
     return 0
 
