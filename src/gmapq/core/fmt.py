@@ -1,8 +1,7 @@
 # gmapq.core.fmt
 import sys
-from .const import ANSI
 
 
-def errorf(msg: str) -> str:
-    print(f"{ANSI.red}{msg}{ANSI.reset}", file=sys.stderr)
+def errorf(*msg: str) -> str:
+    print(" ".join(str(m) for m in msg), file=sys.stderr)
 

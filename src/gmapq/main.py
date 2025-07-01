@@ -24,17 +24,26 @@ def main():
 
     match argv.search:
         case "text":
-            # mask = "places.displayName,places.formattedAddress"
-            r = google.text_search(argv.query)
+            try:
+                resp = google.text_search(argv.query, argv.mask)
+            except Exception as e:
+                errorf("Query failed:", str(e))
+                return os.EX_PROTOCOL
+        case "nearby":
+            return os.EX_UNAVAILABLE
+        case "id":
+            return os.EX_UNAVAILABLE
         case _:
             # should be unreachable
             errorf(f"{argv.search} is not available.")
             return os.EX_UNAVAILABLE
 
-    print(json.dumps(r))
+    # TODO: implement output formats
+    print(json.dumps(resp))
 
-    return 0
+    return os.EX_OK
 
 
 if __name__ == "__main__":
     sys.exit(main())
+

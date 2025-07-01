@@ -15,7 +15,8 @@ def parse_argv() -> argparse.Namespace:
             "-o",
             "--output",
             required=True,
-            help="<path> Output file path"
+            choices=["json", "xml", "csv"],
+            help="<string> Output format"
         )
 
     # text search
@@ -25,6 +26,13 @@ def parse_argv() -> argparse.Namespace:
         "--query",
         required=True,
         help="<string> Text search query"
+    )
+    text_parser.add_argument(
+        "-m",
+        "--mask",
+        required=False,
+        default="*",
+        help="<string> Protocol buffer field mask"
     )
     _parse_output(text_parser)
 
