@@ -2,7 +2,7 @@
 import os
 import sys
 import json
-import argparse
+from argparse import Namespace
 from gmapq.core.env import get_envvar
 from gmapq.core.fmt import errorf
 from gmapq.core.args import parse_argv
@@ -38,7 +38,7 @@ def main():
     return os.EX_OK
 
 
-def handle_maps_query(argv: argparse.Namespace, client: GooglePlacesClient) -> str:
+def handle_maps_query(argv: Namespace, client: GooglePlacesClient) -> str:
     match argv.search:
         case SearchMethod.TEXT.value:
             resp = client.text_search(argv.query, argv.mask)
