@@ -45,6 +45,13 @@ def parse_argv() -> argparse.Namespace:
         required=True,
         help="<string> Google place ID"
     )
+    id_parser.add_argument(
+        "-m",
+        "--mask",
+        required=False,
+        default="*",
+        help="<string> Protocol buffer field mask"
+    )
     _parse_output(id_parser)
 
     # nearby search
@@ -66,6 +73,13 @@ def parse_argv() -> argparse.Namespace:
         "--radius",
         required=True,
         help="<float> Radius in metres"
+    )
+    nearby_parser.add_argument(
+        "-m",
+        "--mask",
+        required=False,
+        default="*",
+        help="<string> Protocol buffer field mask"
     )
     _parse_output(nearby_parser)
 
