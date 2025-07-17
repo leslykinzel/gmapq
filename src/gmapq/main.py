@@ -6,6 +6,7 @@ import argparse
 from gmapq.core.env import get_envvar
 from gmapq.core.fmt import errorf
 from gmapq.core.args import parse_argv
+from gmapq.core.const import SearchMethod
 from gmapq.core.google import GooglePlacesClient
 from requests import HTTPError
 
@@ -34,25 +35,22 @@ def main():
 
     # TODO: implement output formats
     print(json.dumps(resp, sort_keys=True, indent=4, separators=(",", ": ")))
-
     return os.EX_OK
 
 
 def handle_maps_query(argv: argparse.Namespace, client: GooglePlacesClient) -> str:
     match argv.search:
-        case "text":
+        case SearchMethod.TEXT.value:
             resp = client.text_search(argv.query, argv.mask)
-        case "nearby":
+        case SearchMethod.ID.value:
             raise NotImplementedError
-        case "id":
+        case SearchMethod.NEARBY.value:
             raise NotImplementedError
         case _:
             # argparse should make this unreachable
             raise NotImplementedError
-
     return resp
 
 
 if __name__ == "__main__":
     sys.exit(main())
-

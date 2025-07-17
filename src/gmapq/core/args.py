@@ -1,5 +1,6 @@
 # gmapq.core.args
 import argparse
+from gmapq.core.const import SearchMethod
 
 
 def parse_argv() -> argparse.Namespace:
@@ -10,7 +11,7 @@ def parse_argv() -> argparse.Namespace:
         required=True
     )
 
-    def _parse_output(subparser: argparse.Namespace):
+    def _parse_output(subparser: argparse.ArgumentParser):
         subparser.add_argument(
             "-o",
             "--output",
@@ -20,7 +21,7 @@ def parse_argv() -> argparse.Namespace:
         )
 
     # text search
-    text_parser = subparser.add_parser("text", help="Text search")
+    text_parser = subparser.add_parser(SearchMethod.TEXT.value, help="Text search")
     text_parser.add_argument(
         "-q",
         "--query",
@@ -37,7 +38,7 @@ def parse_argv() -> argparse.Namespace:
     _parse_output(text_parser)
 
     # id search
-    id_parser = subparser.add_parser("id", help="ID search")
+    id_parser = subparser.add_parser(SearchMethod.ID.value, help="ID search")
     id_parser.add_argument(
         "-q",
         "--query",
@@ -47,7 +48,7 @@ def parse_argv() -> argparse.Namespace:
     _parse_output(id_parser)
 
     # nearby search
-    nearby_parser = subparser.add_parser("nearby", help="Nearby search")
+    nearby_parser = subparser.add_parser(SearchMethod.NEARBY.value, help="Nearby search")
     nearby_parser.add_argument(
         "-x",
         "--latitude",
