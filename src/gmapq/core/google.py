@@ -24,8 +24,8 @@ class GooglePlacesClient:
         }
         response = requests.post(
             GoogleAPIEndpoints.PLACES_SEARCH_TEXT_URL,
-            headers=headers,
-            json=payload
+            headers = headers,
+            json = payload
         )
         response.raise_for_status()
         return response.json()
@@ -39,11 +39,21 @@ class GooglePlacesClient:
         """
         pass
 
-    def id_search(self, id: str):
+    def id_search(self, id: str, mask: str = "*"):
         """ Id search
 
             id -- Unique place identifier
             mask -- Response field mask
         """
-        pass
+        headers = {
+            "Content-Type":     "application/json",
+            "X-Goog-Api-Key":   self.api_key,
+            "X-Goog-FieldMask": mask
+        }
+        response = requests.get(
+            f"{GoogleAPIEndpoints.PLACES_BASE_URL}/{id}",
+            headers = headers
+        )
+        response.raise_for_status()
+        return response.json()
 

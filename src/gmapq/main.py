@@ -43,7 +43,7 @@ def handle_maps_query(argv: Namespace, client: GooglePlacesClient) -> str:
         case SearchMethod.TEXT.value:
             resp = client.text_search(argv.query, argv.mask)
         case SearchMethod.ID.value:
-            raise NotImplementedError
+            resp = client.id_search(argv.query, argv.mask)
         case SearchMethod.NEARBY.value:
             raise NotImplementedError
         case _:
