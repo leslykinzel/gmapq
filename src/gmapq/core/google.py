@@ -11,6 +11,7 @@ class GooglePlacesClient:
     def search_text(self, query: str, mask: str = "*"):
         """ Generic text search
 
+        Args:
             query -- Text query for Google Maps
             mask -- Response field mask
         """
@@ -33,6 +34,7 @@ class GooglePlacesClient:
     def search_nearby_basic(self, query: str, lat: float, lon: float, rad: float, mask: str = "*"):
         """ Basic nearby radius search.
 
+        Args:
             query -- Comma-separated "place-types": https://developers.google.com/maps/documentation/places/web-service/place-types#table-a
             lat -- WGS84 Latitude
             lon -- WGS84 Longitude
@@ -67,6 +69,7 @@ class GooglePlacesClient:
     def search_id(self, id: str, mask: str = "*"):
         """ Id search
 
+        Args:
             id -- Unique place identifier
             mask -- Response field mask
         """
