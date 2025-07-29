@@ -1,6 +1,7 @@
 # gmapq.core.args
 import argparse
-from gmapq.core.const import SearchMethod
+from gmapq.core.fmt import OutputFormat
+from gmapq.core.google import SearchMethod
 
 
 def parse_argv() -> argparse.Namespace:
@@ -11,12 +12,12 @@ def parse_argv() -> argparse.Namespace:
         required=True
     )
 
-    def _parse_output(subparser: argparse.ArgumentParser):
+    def __parse_output(subparser: argparse.ArgumentParser):
         subparser.add_argument(
             "-o",
             "--output",
             required=True,
-            choices=["json", "xml", "csv"],
+            choices=[item.value for item in OutputFormat],
             help="<string> Output format"
         )
 
@@ -35,7 +36,7 @@ def parse_argv() -> argparse.Namespace:
         default="*",
         help="<string> Protocol buffer field mask"
     )
-    _parse_output(text_parser)
+    __parse_output(text_parser)
 
     # id search
     id_parser = subparser.add_parser(SearchMethod.ID.value, help="ID search")
@@ -52,7 +53,7 @@ def parse_argv() -> argparse.Namespace:
         default="*",
         help="<string> Protocol buffer field mask"
     )
-    _parse_output(id_parser)
+    __parse_output(id_parser)
 
     # nearby search
     nearby_parser = subparser.add_parser(SearchMethod.NEARBY.value, help="Nearby search")
@@ -87,7 +88,7 @@ def parse_argv() -> argparse.Namespace:
         default="*",
         help="<string> Protocol buffer field mask"
     )
-    _parse_output(nearby_parser)
+    __parse_output(nearby_parser)
 
     return parser.parse_args()
 

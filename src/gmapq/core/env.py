@@ -2,9 +2,11 @@
 import os
 
 
-def get_envvar(key: str) -> str:
-    val = os.getenv(key)
-    if val is None:
-        raise Exception(f"Missing environment variable: {key}")
-    return val
+class Env:
 
+    @staticmethod
+    def load(key: str) -> str:
+        try:
+            return os.environ[key]
+        except KeyError:
+            raise EnvironmentError(f"Missing required environment variable: {key}")
