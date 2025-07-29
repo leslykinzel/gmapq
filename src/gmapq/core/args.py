@@ -57,6 +57,12 @@ def parse_argv() -> argparse.Namespace:
     # nearby search
     nearby_parser = subparser.add_parser(SearchMethod.NEARBY.value, help="Nearby search")
     nearby_parser.add_argument(
+        "-q",
+        "--query",
+        required=True,
+        help="<string> Comma separated strings https://developers.google.com/maps/documentation/places/web-service/place-types#table-a"
+    )
+    nearby_parser.add_argument(
         "-x",
         "--latitude",
         required=True,

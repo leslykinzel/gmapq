@@ -41,11 +41,23 @@ def main():
 def handle_maps_query(argv: Namespace, client: GooglePlacesClient) -> str:
     match argv.search:
         case SearchMethod.TEXT.value:
-            resp = client.text_search(argv.query, argv.mask)
+            resp = client.search_text(
+                argv.query,
+                argv.mask
+            )
         case SearchMethod.ID.value:
-            resp = client.id_search(argv.query, argv.mask)
+            resp = client.search_id(
+                argv.query,
+                argv.mask
+            )
         case SearchMethod.NEARBY.value:
-            raise NotImplementedError
+            resp = client.search_nearby_basic(
+                argv.query,
+                argv.latitude,
+                argv.longitude,
+                argv.radius,
+                argv.mask
+            )
         case _:
             # argparse should make this unreachable
             raise NotImplementedError

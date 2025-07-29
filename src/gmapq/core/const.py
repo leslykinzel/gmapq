@@ -14,6 +14,11 @@ class OutputFormat(Enum):
     CSV  = "csv"
 
 
+class NearbySearchPreference(Enum):
+    DISTANCE   = "DISTANCE"
+    POPULARITY = "POPULARITY"
+
+
 class GoogleAPIEndpoints:
     PLACES_BASE_URL          = "https://places.googleapis.com/v1/places"
     PLACES_SEARCH_TEXT_URL   = f"{PLACES_BASE_URL}:searchText"
